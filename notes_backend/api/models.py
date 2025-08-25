@@ -13,10 +13,9 @@ class Note(models.Model):
     - created_at: Creation timestamp
     - updated_at: Last update timestamp
     """
+    # PUBLIC_INTERFACE
     title = models.CharField(max_length=255)
-    content = models.Textarea().render("content", "")
-    # The above is not correct usage; change to TextField
-    # Keeping implementation proper:
+    # Use a proper TextField for the content body; remove incorrect Textarea usage.
     content = models.TextField()
     owner = models.ForeignKey(User, on_delete=models.CASCADE, related_name="notes")
     created_at = models.DateTimeField(auto_now_add=True)
